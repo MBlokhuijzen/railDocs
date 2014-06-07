@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/railDocs.iml" filepath="$PROJECT_DIR$/railDocs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/railDocs/railDocs-railDocs.iml" filepath="$PROJECT_DIR$/railDocs/railDocs-railDocs.iml" />
     </modules>
   </component>
 </project>
