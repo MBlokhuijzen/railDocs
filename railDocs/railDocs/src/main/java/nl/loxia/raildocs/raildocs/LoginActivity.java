@@ -28,11 +28,6 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-
-/**
- * A login screen that offers login via email/password.
-
- */
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     /**
