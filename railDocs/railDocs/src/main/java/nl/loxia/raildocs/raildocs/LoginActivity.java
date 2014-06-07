@@ -25,9 +25,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.EActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@EActivity(R.layout.activity_login)
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     /**
@@ -51,8 +56,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+    }
 
+    @AfterViews
+    protected void afterViews() {
         // Set up the login form.
         mEmailView = (AutoCompleteTextView) findViewById(R.id.email);
         populateAutoComplete();

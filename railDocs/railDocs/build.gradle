@@ -1,4 +1,18 @@
 apply plugin: 'android'
+apply plugin: 'android-apt'
+def AAVersion = '3.0.1'
+
+dependencies {
+    apt "org.androidannotations:androidannotations:$AAVersion"
+    compile "org.androidannotations:androidannotations-api:$AAVersion"
+}
+
+apt {
+    arguments {
+        androidManifestFile variant.processResources.manifestFile
+        resourcePackageName 'nl.loxia.raildocs.raildocs'
+    }
+}
 
 android {
     compileSdkVersion 19
