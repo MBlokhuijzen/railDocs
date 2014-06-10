@@ -21,31 +21,23 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ItemClick;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
-
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
-    /**
-     * Keep track of the login task to ensure we can cancel it if requested.
-     */
-    private UserLoginTask authTask = null;
-
     @ViewById(R.id.email)
     protected AutoCompleteTextView emailView;
     @ViewById(R.id.password)
@@ -56,6 +48,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     protected View loginFormView;
     @ViewById(R.id.email_sign_in_button)
     protected Button emailSignInButton;
+
+    @RestService
+    IRailCloud railCloud;
+
+    private boolean loginInProgress;
 
     @AfterViews
     protected void afterViews() {
@@ -78,34 +75,28 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         getLoaderManager().initLoader(0, null, this);
     }
 
-
-    /**
-     * Attempts to sign in or register the account specified by the login form.
-     * If there are form errors (invalid email, missing fields, etc.), the
-     * errors are presented and no actual login attempt is made.
-     */
     @Click(R.id.email_sign_in_button)
     public void attemptLogin() {
-        if (authTask != null) {
+        if (loginInProgress) {
             return;
         }
 
         emailView.setError(null);
         passwordView.setError(null);
 
-        String email = emailView.getText().toString();
+        String username = emailView.getText().toString();
         String password = passwordView.getText().toString();
 
-        boolean ok = validateFields(email, password);
+        boolean ok = validateFields(username, password);
 
         if (ok) {
             showProgress(true);
-            authTask = new UserLoginTask(email, password);
-            authTask.execute((Void) null);
+            loginInProgress = true;
+            doLogin(username, password);
         }
     }
 
-    private boolean validateFields(String email, String password) {
+    private boolean validateFields(String username, String password) {
         boolean ok = true;
         View focusView = null;
 
@@ -117,11 +108,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         }
 
         // Check for a valid email address.
-        if (TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(username)) {
             emailView.setError(getString(R.string.error_field_required));
             focusView = emailView;
             ok = false;
-        } else if (!isEmailValid(email)) {
+        } else if (!isEmailValid(username)) {
             emailView.setError(getString(R.string.error_invalid_email));
             focusView = emailView;
             ok = false;
@@ -220,61 +211,28 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         emailView.setAdapter(adapter);
     }
 
-    /**
-     * Represents an asynchronous login/registration task used to authenticate
-     * the user.
-     */
-    public class UserLoginTask extends AsyncTask<Void, Void, Boolean> {
-
-        private final String email;
-        private final String password;
-
-        UserLoginTask(String email, String password) {
-            this.email = email;
-            this.password = password;
+    @Background
+    protected void doLogin(String username, String password) {
+        railCloud.setHttpBasicAuth(username, password);
+        try {
+            railCloud.getNamespaces();
+        } catch (RestClientException e) {
+            loginFailed();
         }
+        loginSucceeded();
+    }
 
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            // TODO: attempt authentication against a network service.
+    @UiThread
+    protected void loginSucceeded() {
+        showProgress(false);
+        loginInProgress = false;
+    }
 
-            try {
-                // Simulate network access.
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                return false;
-            }
-
-            for (String credential : DUMMY_CREDENTIALS) {
-                String[] pieces = credential.split(":");
-                if (pieces[0].equals(email)) {
-                    // Account exists, return true if the password matches.
-                    return pieces[1].equals(password);
-                }
-            }
-
-            // TODO: register the new account here.
-            return true;
-        }
-
-        @Override
-        protected void onPostExecute(final Boolean success) {
-            authTask = null;
-            showProgress(false);
-
-            if (success) {
-                finish();
-            } else {
-                passwordView.setError(getString(R.string.error_incorrect_password));
-                passwordView.requestFocus();
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            authTask = null;
-            showProgress(false);
-        }
+    @UiThread
+    protected void loginFailed() {
+        showProgress(false);
+        loginInProgress = false;
+        Toast.makeText(this, R.string.login_failed, Toast.LENGTH_SHORT).show();
     }
 }
 
