@@ -19,7 +19,9 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +33,7 @@ import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
+import org.androidannotations.annotations.sharedpreferences.Pref;
 import org.springframework.web.client.RestClientException;
 
 import java.util.ArrayList;
@@ -48,6 +51,11 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     protected View loginFormView;
     @ViewById(R.id.email_sign_in_button)
     protected Button emailSignInButton;
+    @ViewById(R.id.remember_login)
+    protected CheckBox rememberLoginSwitch;
+
+    @Pref
+    protected PasswordStore_ passwordStore;
 
     @RestService
     IRailCloud railCloud;
@@ -56,7 +64,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     @AfterViews
     protected void afterViews() {
-        // Set up the login form.
         populateAutoComplete();
 
         passwordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
@@ -69,6 +76,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
                 return false;
             }
         });
+
+        if (passwordStore.username().exists()) {
+            emailView.setText(passwordStore.username().get());
+            rememberLoginSwitch.setChecked(true);
+        }
+
+        if (passwordStore.password().exists()) {
+            passwordView.setText(passwordStore.password().get());
+        }
     }
 
     private void populateAutoComplete() {
@@ -219,14 +235,23 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         } catch (RestClientException e) {
             loginFailed();
         }
-        loginSucceeded();
+        loginSucceeded(username, password);
     }
 
     @UiThread
-    protected void loginSucceeded() {
+    protected void loginSucceeded(String username, String password) {
         loginInProgress = false;
+        if (rememberLoginSwitch.isChecked()) {
+            savePassword(username, password);
+        } else {
+            passwordStore.clear();
+        }
         PostListActivity_.intent(this).start();
         finish();
+    }
+
+    private void savePassword(String username, String password) {
+        passwordStore.edit().username().put(username).password().put(password).apply();
     }
 
     @UiThread
