@@ -3,17 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="nl.loxia.raildocs.raildocs.PostFragment">
+    tools:context="nl.loxia.raildocs.raildocs.PostListFragment">
 
     <ListView
         android:id="@android:id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <TextView
-        android:id="@android:id/empty"
-        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center" />
-
+        tools:listitem="@android:layout/simple_list_item_1" />
 </FrameLayout>

@@ -224,8 +224,9 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     @UiThread
     protected void loginSucceeded() {
-        showProgress(false);
         loginInProgress = false;
+        PostListActivity_.intent(this).start();
+        finish();
     }
 
     @UiThread
