@@ -18,7 +18,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostListActivity"
+            android:name=".PostListActivity_"
             android:label="@string/title_activity_post_list" >
         </activity>
     </application>
