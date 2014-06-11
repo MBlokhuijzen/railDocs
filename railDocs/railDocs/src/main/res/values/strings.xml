@@ -2,5 +2,8 @@
 <resources>
 
     <string name="app_name">railDocs</string>
+    <string name="title_activity_post_list">Posten</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
 
 </resources>
