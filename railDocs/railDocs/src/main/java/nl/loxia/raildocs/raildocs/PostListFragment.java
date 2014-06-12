@@ -1,22 +1,26 @@
 package nl.loxia.raildocs.raildocs;
 
 import android.app.Activity;
-import android.app.Fragment;
-import android.os.Bundle;
-import android.view.LayoutInflater;
+import android.app.ListFragment;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
+import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
+import org.androidannotations.annotations.rest.RestService;
+import org.springframework.web.client.RestClientException;
 
-import java.util.Arrays;
+import java.util.List;
+
+import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
 
 /**
  * A fragment representing a list of Items.
@@ -28,13 +32,20 @@ import java.util.Arrays;
  * interface.
  */
 @EFragment(R.layout.fragment_post)
-public class PostListFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class PostListFragment extends ListFragment implements AbsListView.OnItemClickListener {
     private OnFragmentInteractionListener listener;
 
     @ViewById(android.R.id.list)
     protected AbsListView listView;
 
+    @RestService
+    protected IRailCloud railCloud;
+
+    @Bean
+    protected CredentialsStore credentialsStore;
+
     private ListAdapter listAdapter;
+    private List<String> posten;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -45,9 +56,30 @@ public class PostListFragment extends Fragment implements AbsListView.OnItemClic
 
     @AfterViews
     public void init() {
-        listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, Arrays.asList("a", "b"));
-        listView.setAdapter(listAdapter);
         listView.setOnItemClickListener(this);
+        loadData();
+    }
+
+    @Background
+    protected void loadData() {
+        try {
+            credentialsStore.setCredentials(railCloud);
+            setData(railCloud.getPosten());
+        } catch (RestClientException e) {
+            loadingError();
+        }
+    }
+
+    @UiThread
+    protected void loadingError() {
+        Toast.makeText(getActivity(), "Fout tijdens laden posten", Toast.LENGTH_SHORT).show();
+    }
+
+    @UiThread
+    protected void setData(List<String> posten) {
+        this.posten = posten;
+        listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, posten);
+        setListAdapter(listAdapter);
     }
 
     @Override
@@ -69,7 +101,7 @@ public class PostListFragment extends Fragment implements AbsListView.OnItemClic
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != listener) {
-            listener.postGeselecteerd("AAP");
+            listener.postGeselecteerd(posten.get((int) id));
         }
     }
 

@@ -16,7 +16,7 @@ public interface IRailCloud {
     @RequiresAuthentication
     void getNamespaces();
 
-    @Get("/lijst/velden?type=nl.loxia.document.blad&veld=vlpost")
+    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=vlpost")
     @RequiresAuthentication
     List<String> getPosten();
 

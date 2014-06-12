@@ -8,8 +8,6 @@ import android.content.CursorLoader;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
-
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.TextUtils;
@@ -21,15 +19,14 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
@@ -39,8 +36,10 @@ import org.springframework.web.client.RestClientException;
 import java.util.ArrayList;
 import java.util.List;
 
+import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
+
 @EActivity(R.layout.activity_login)
-public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
+public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     @ViewById(R.id.email)
     protected AutoCompleteTextView emailView;
     @ViewById(R.id.password)
@@ -55,7 +54,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     protected CheckBox rememberLoginSwitch;
 
     @Pref
-    protected PasswordStore_ passwordStore;
+    protected PasswordPersister_ passwordStore;
+
+    @Bean
+    protected CredentialsStore credentialsStore;
 
     @RestService
     IRailCloud railCloud;
@@ -155,8 +157,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         int shortAnimTime = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
-        loginFormView.animate().setDuration(shortAnimTime).alpha(
-                show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
+        loginFormView.animate().setDuration(shortAnimTime).alpha(show ? 0 : 1).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 loginFormView.setVisibility(show ? View.GONE : View.VISIBLE);
@@ -164,8 +165,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         });
 
         progressView.setVisibility(show ? View.VISIBLE : View.GONE);
-        progressView.animate().setDuration(shortAnimTime).alpha(
-                show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
+        progressView.animate().setDuration(shortAnimTime).alpha(show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
                 progressView.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -177,17 +177,15 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle) {
         return new CursorLoader(this,
                 // Retrieve data rows for the device user's 'profile' contact.
-                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI,
-                        ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
+                Uri.withAppendedPath(ContactsContract.Profile.CONTENT_URI, ContactsContract.Contacts.Data.CONTENT_DIRECTORY), ProfileQuery.PROJECTION,
 
                 // Select only email addresses.
-                ContactsContract.Contacts.Data.MIMETYPE +
-                        " = ?", new String[]{ContactsContract.CommonDataKinds.Email
-                .CONTENT_ITEM_TYPE},
+                ContactsContract.Contacts.Data.MIMETYPE + " = ?", new String[]{ContactsContract.CommonDataKinds.Email.CONTENT_ITEM_TYPE},
 
                 // Show primary email addresses first. Note that there won't be
                 // a primary email address if the user hasn't specified one.
-                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC");
+                ContactsContract.Contacts.Data.IS_PRIMARY + " DESC"
+        );
     }
 
     @Override
@@ -208,10 +206,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
     }
 
     private interface ProfileQuery {
-        String[] PROJECTION = {
-                ContactsContract.CommonDataKinds.Email.ADDRESS,
-                ContactsContract.CommonDataKinds.Email.IS_PRIMARY,
-        };
+        String[] PROJECTION = {ContactsContract.CommonDataKinds.Email.ADDRESS, ContactsContract.CommonDataKinds.Email.IS_PRIMARY,};
 
         int ADDRESS = 0;
         int IS_PRIMARY = 1;
@@ -220,9 +215,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     private void addEmailsToAutoComplete(List<String> emailAddressCollection) {
         //Create adapter to tell the AutoCompleteTextView what to show in its dropdown list.
-        ArrayAdapter<String> adapter =
-                new ArrayAdapter<String>(LoginActivity.this,
-                        android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(LoginActivity.this, android.R.layout.simple_dropdown_item_1line, emailAddressCollection);
 
         emailView.setAdapter(adapter);
     }
@@ -232,10 +225,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
         railCloud.setHttpBasicAuth(username, password);
         try {
             railCloud.getNamespaces();
+            loginSucceeded(username, password);
         } catch (RestClientException e) {
             loginFailed();
         }
-        loginSucceeded(username, password);
     }
 
     @UiThread
@@ -252,6 +245,8 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor>{
 
     private void savePassword(String username, String password) {
         passwordStore.edit().username().put(username).password().put(password).apply();
+        credentialsStore.username = username;
+        credentialsStore.password = password;
     }
 
     @UiThread

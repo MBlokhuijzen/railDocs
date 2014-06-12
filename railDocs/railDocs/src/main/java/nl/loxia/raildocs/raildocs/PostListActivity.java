@@ -7,12 +7,11 @@ import org.androidannotations.annotations.EActivity;
 
 @EActivity(R.layout.activity_post_list)
 public class PostListActivity extends Activity implements PostListFragment.OnFragmentInteractionListener {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            getFragmentManager().beginTransaction().add(R.id.container, PostListFragment_.builder().build()).commit();
+            getFragmentManager().beginTransaction().add(R.id.container, new PostListFragment_()).commit();
         }
     }
 
