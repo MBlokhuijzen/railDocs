@@ -21,6 +21,11 @@
             android:name=".PostListActivity_"
             android:label="@string/title_activity_post_list" >
         </activity>
+        <activity
+            android:name=".DossierListActivity_"
+            android:label="@string/title_activity_dossier_list"
+            android:parentActivityName=".PostListActivity_">
+        </activity>
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
