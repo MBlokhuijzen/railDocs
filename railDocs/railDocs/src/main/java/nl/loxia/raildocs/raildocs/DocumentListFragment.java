@@ -1,5 +1,6 @@
 package nl.loxia.raildocs.raildocs;
 
+import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import org.androidannotations.annotations.AfterViews;
@@ -22,26 +23,26 @@ import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
  * interface.
  */
 @EFragment(R.layout.fragment_post)
-public class DossierListFragment extends BrowseListFragment {
+public class DocumentListFragment extends BrowseListFragment {
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
      */
-    public DossierListFragment() {
+    public DocumentListFragment() {
     }
 
     @AfterViews
     public void init() {
         listView.setOnItemClickListener(this);
-        loadData(getArguments().getString(BundleKeys.POST));
+        loadData(getArguments().getString(BundleKeys.POST), getArguments().getString(BundleKeys.DOSSIER));
     }
 
     @Background
-    protected void loadData(String post) {
+    protected void loadData(String post, String dossier) {
         try {
             credentialsStore.setCredentials(railCloud);
-            setData(railCloud.getDossiers(post));
+            setData(railCloud.getDocumenten(post, dossier));
         } catch (RestClientException e) {
             loadingError();
         }

@@ -24,5 +24,9 @@ public interface IRailCloud {
     @RequiresAuthentication
     List<String> getDossiers(String post);
 
+    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=documentnaam&filter=vlpost;e;STRING;{post}&filter=dossiernaam;e;STRING;{dossier}")
+    @RequiresAuthentication
+    List<String> getDocumenten(String post, String dossier);
+
     void setHttpBasicAuth(String username, String password);
 }

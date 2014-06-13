@@ -5,6 +5,7 @@ import android.app.ListFragment;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -36,6 +37,13 @@ public class BrowseListFragment extends ListFragment implements AbsListView.OnIt
     @UiThread
     protected void loadingError() {
         Toast.makeText(getActivity(), "Fout tijdens laden", Toast.LENGTH_SHORT).show();
+    }
+
+    @UiThread
+    protected void setData(List<String> data) {
+        this.listContent = data;
+        listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, data);
+        setListAdapter(listAdapter);
     }
 
     @Override

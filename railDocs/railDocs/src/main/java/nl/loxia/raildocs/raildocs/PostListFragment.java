@@ -43,11 +43,4 @@ public class PostListFragment extends BrowseListFragment {
             loadingError();
         }
     }
-
-    @UiThread
-    protected void setData(List<String> posten) {
-        this.listContent = posten;
-        listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, posten);
-        setListAdapter(listAdapter);
-    }
 }
