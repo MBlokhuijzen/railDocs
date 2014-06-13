@@ -20,6 +20,6 @@ public class DossierListActivity extends Activity implements DossierListFragment
     }
 
     @Override
-    public void dossierGeselecteerd(String dossier) {
+    public void itemGeselecteerd(String selectie) {
     }
 }

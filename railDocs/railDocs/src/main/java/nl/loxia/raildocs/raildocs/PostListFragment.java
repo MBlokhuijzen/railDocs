@@ -72,7 +72,7 @@ public class PostListFragment extends ListFragment implements AbsListView.OnItem
 
     @UiThread
     protected void loadingError() {
-        Toast.makeText(getActivity(), "Fout tijdens laden posten", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "Fout tijdens laden", Toast.LENGTH_SHORT).show();
     }
 
     @UiThread
