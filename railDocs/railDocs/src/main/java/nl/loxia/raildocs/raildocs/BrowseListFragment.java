@@ -32,7 +32,7 @@ public class BrowseListFragment extends ListFragment implements AbsListView.OnIt
     protected CredentialsStore credentialsStore;
     protected ListAdapter listAdapter;
     protected List<String> listContent;
-    private OnFragmentInteractionListener listener;
+    protected OnFragmentInteractionListener listener;
 
     @UiThread
     protected void loadingError() {

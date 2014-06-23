@@ -42,7 +42,11 @@ public class DocumentListFragment extends BrowseListFragment {
     protected void loadData(String post, String dossier) {
         try {
             credentialsStore.setCredentials(railCloud);
-            setData(railCloud.getDocumenten(post, dossier));
+            List<String> documenten = railCloud.getDocumenten(post, dossier);
+            setData(documenten);
+            if (documenten.size() == 1) {
+                listener.itemGeselecteerd(documenten.get(0));
+            }
         } catch (RestClientException e) {
             loadingError();
         }
