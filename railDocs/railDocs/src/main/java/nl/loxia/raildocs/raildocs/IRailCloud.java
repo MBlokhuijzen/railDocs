@@ -16,15 +16,15 @@ public interface IRailCloud {
     @RequiresAuthentication
     void getNamespaces();
 
-    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=vlpost")
+    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=vlpost&filter=domeintype;in;STRING;OBE(?<!),OR(?<!),OS")
     @RequiresAuthentication
     List<String> getPosten();
 
-    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=dossiernaam&filter=vlpost;e;STRING;{post}")
+    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=dossiernaam&filter=vlpost;e;STRING;{post}&filter=domeintype;in;STRING;OBE(?<!),OR(?<!),OS")
     @RequiresAuthentication
     List<String> getDossiers(String post);
 
-    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=documentnaam&filter=vlpost;e;STRING;{post}&filter=dossiernaam;e;STRING;{dossier}")
+    @Get("/values/lijst/velden?type=nl.loxia.document.blad&veld=documentnaam&filter=vlpost;e;STRING;{post}&filter=dossiernaam;e;STRING;{dossier}&filter=domeintype;in;STRING;OBE(?<!),OR(?<!),OS")
     @RequiresAuthentication
     List<String> getDocumenten(String post, String dossier);
 
