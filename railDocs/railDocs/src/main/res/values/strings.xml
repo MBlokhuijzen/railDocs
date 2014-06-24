@@ -6,5 +6,6 @@
     <string name="title_activity_dossier_list">Dossiers</string>
     <string name="title_activity_document_list">Documenten</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_bladen_list">Bladen in dit SWOD</string>
 
 </resources>
