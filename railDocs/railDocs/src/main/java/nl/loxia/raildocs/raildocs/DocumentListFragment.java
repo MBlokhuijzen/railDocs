@@ -46,7 +46,6 @@ public class DocumentListFragment extends BrowseListFragment {
             setData(documenten);
             if (documenten.size() == 1) {
                 listener.itemGeselecteerd(documenten.get(0));
-                railCloud.getBladen(post, dossier, documenten.get(0));
             }
         } catch (RestClientException e) {
             loadingError();
