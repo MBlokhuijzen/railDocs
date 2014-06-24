@@ -81,12 +81,7 @@ public class BladenListFragment extends ListFragment implements AbsListView.OnIt
     protected void setData(List<Blad> data) {
         this.listContent = data;
 
-        List<String> ids = new ArrayList<String>();
-        for (Blad blad : data) {
-            ids.add(blad.idnummer);
-        }
-
-        listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, ids);
+        listAdapter = new BladArrayAdapter(getActivity(), data);
         setListAdapter(listAdapter);
     }
 
