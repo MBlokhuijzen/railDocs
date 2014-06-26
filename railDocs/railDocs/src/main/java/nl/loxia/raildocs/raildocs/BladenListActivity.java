@@ -9,7 +9,7 @@ import org.androidannotations.annotations.EActivity;
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
-public class BladenListActivity extends Activity implements BladenListFragment.OnFragmentInteractionListener {
+public class BladenListActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,9 +20,5 @@ public class BladenListActivity extends Activity implements BladenListFragment.O
 
             getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.DOCUMENT));
         }
-    }
-
-    @Override
-    public void itemGeselecteerd(String selectie) {
     }
 }

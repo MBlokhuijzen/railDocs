@@ -12,7 +12,7 @@ import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
 /**
  * Created by Tiemen on 10-6-2014.
  */
-@Rest(rootUrl = "https://www.railcloud.nl/railcloud/infra", converters = {GsonHttpMessageConverter.class}, interceptors = {TestInterceptor.class})
+@Rest(rootUrl = "https://www.railcloud.nl/railcloud/infra", converters = {GsonHttpMessageConverter.class}, interceptors = {StupidBracketInterceptor.class})
 public interface IRailCloud {
     @Get("/namespaces")
     @RequiresAuthentication
