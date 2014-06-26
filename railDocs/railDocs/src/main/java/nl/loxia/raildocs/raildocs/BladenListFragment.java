@@ -2,10 +2,11 @@ package nl.loxia.raildocs.raildocs;
 
 import android.app.Activity;
 import android.app.ListFragment;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
 
@@ -18,9 +19,9 @@ import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
 import org.springframework.web.client.RestClientException;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
 
@@ -103,7 +104,7 @@ public class BladenListFragment extends ListFragment implements AbsListView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // todo download pdf
+        // todo download and open pdf
     }
 
     public interface OnFragmentInteractionListener {

@@ -9,6 +9,8 @@ import android.widget.TextView;
 
 import java.util.List;
 
+import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
+
 /**
  * Created by Tiemen on 24-6-2014.
  */
