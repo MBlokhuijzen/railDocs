@@ -70,6 +70,8 @@ public class BrowseListFragment extends ListFragment implements AbsListView.OnIt
     }
 
     public interface OnFragmentInteractionListener {
+        public void postGeselecteerd(String post);
+
         public void itemGeselecteerd(String selectie);
     }
 }

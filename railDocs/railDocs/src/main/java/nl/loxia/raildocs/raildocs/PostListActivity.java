@@ -21,9 +21,14 @@ public class PostListActivity extends Activity implements PostListFragment.OnFra
     }
 
     @Override
-    public void itemGeselecteerd(String post) {
+    public void postGeselecteerd(String post) {
         Intent intent = DossierListActivity_.intent(this).get();
         intent.putExtra(BundleKeys.POST, post);
         startActivity(intent);
+    }
+
+    @Override
+    public void itemGeselecteerd(String selectie) {
+
     }
 }

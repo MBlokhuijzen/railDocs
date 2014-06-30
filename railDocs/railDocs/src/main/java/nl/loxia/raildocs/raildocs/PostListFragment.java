@@ -1,5 +1,7 @@
 package nl.loxia.raildocs.raildocs;
 
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import org.androidannotations.annotations.AfterViews;
@@ -10,15 +12,6 @@ import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Large screen devices (such as tablets) are supported by replacing the ListView
- * with a GridView.
- * <p/>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
 @EFragment(R.layout.fragment_post)
 public class PostListFragment extends BrowseListFragment {
     /**
@@ -32,6 +25,13 @@ public class PostListFragment extends BrowseListFragment {
     public void init() {
         listView.setOnItemClickListener(this);
         loadData();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != listener) {
+            listener.postGeselecteerd(listContent.get((int) id));
+        }
     }
 
     @Background

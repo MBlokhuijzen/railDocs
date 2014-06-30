@@ -23,6 +23,11 @@ public class DocumentListActivity extends Activity implements DocumentListFragme
     }
 
     @Override
+    public void postGeselecteerd(String post) {
+
+    }
+
+    @Override
     public void itemGeselecteerd(String selectie) {
         Intent intent = BladenListActivity_.intent(this).get();
         intent.putExtras(getIntent());
