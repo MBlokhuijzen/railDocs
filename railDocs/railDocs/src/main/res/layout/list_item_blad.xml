@@ -17,4 +17,15 @@
         android:layout_alignParentTop="true"
         android:text="000200123"
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <ImageButton
+        android:background="@android:color/transparent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/downloadButton"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@android:drawable/ic_menu_save" />
+
 </RelativeLayout>
