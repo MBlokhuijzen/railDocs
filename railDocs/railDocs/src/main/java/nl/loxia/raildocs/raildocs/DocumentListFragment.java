@@ -1,6 +1,9 @@
 package nl.loxia.raildocs.raildocs;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import org.androidannotations.annotations.AfterViews;
@@ -13,17 +16,8 @@ import java.util.List;
 
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Large screen devices (such as tablets) are supported by replacing the ListView
- * with a GridView.
- * <p/>
- * Activities containing this fragment MUST implement the {@link Callbacks}
- * interface.
- */
 @EFragment(R.layout.fragment_post)
-public class DocumentListFragment extends BrowseListFragment {
+public class DocumentListFragment extends BrowseListFragment implements AbsListView.OnItemClickListener {
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -38,6 +32,14 @@ public class DocumentListFragment extends BrowseListFragment {
         loadData(getArguments().getString(BundleKeys.POST), getArguments().getString(BundleKeys.DOSSIER));
     }
 
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != listener) {
+            listener.documentGeselecteerd(listContent.get((int) id));
+        }
+    }
+
+
     @Background
     protected void loadData(String post, String dossier) {
         try {
@@ -45,7 +47,7 @@ public class DocumentListFragment extends BrowseListFragment {
             List<String> documenten = railCloud.getDocumenten(post, dossier);
             setData(documenten);
             if (documenten.size() == 1) {
-                listener.itemGeselecteerd(documenten.get(0));
+                listener.documentGeselecteerd(documenten.get(0));
             }
         } catch (RestClientException e) {
             loadingError();

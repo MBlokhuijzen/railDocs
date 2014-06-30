@@ -23,7 +23,7 @@ import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
  * Created by Tiemen on 13-6-2014.
  */
 @EFragment
-public class BrowseListFragment extends ListFragment implements AbsListView.OnItemClickListener {
+public class BrowseListFragment extends ListFragment {
     @ViewById(android.R.id.list)
     protected AbsListView listView;
     @RestService
@@ -62,17 +62,9 @@ public class BrowseListFragment extends ListFragment implements AbsListView.OnIt
         listener = null;
     }
 
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != listener) {
-            listener.itemGeselecteerd(listContent.get((int) id));
-        }
-    }
-
     public interface OnFragmentInteractionListener {
         public void postGeselecteerd(String post);
         public void dossierGeselecteerd(String dossier);
-
-        public void itemGeselecteerd(String selectie);
+        public void documentGeselecteerd(String document);
     }
 }

@@ -1,6 +1,7 @@
 package nl.loxia.raildocs.raildocs;
 
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
@@ -15,7 +16,7 @@ import java.util.List;
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
 
 @EFragment(R.layout.fragment_post)
-public class DossierListFragment extends BrowseListFragment {
+public class DossierListFragment extends BrowseListFragment implements AbsListView.OnItemClickListener {
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).

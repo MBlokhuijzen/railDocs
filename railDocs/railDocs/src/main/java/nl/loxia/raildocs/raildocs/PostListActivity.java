@@ -31,14 +31,18 @@ public class PostListActivity extends Activity implements PostListFragment.OnFra
 
     @Override
     public void dossierGeselecteerd(String dossier) {
-        Intent intent = DocumentListActivity_.intent(this).get();
-        intent.putExtras(getIntent());
-        intent.putExtra(BundleKeys.DOSSIER, dossier);
-        startActivity(intent);
+        DocumentListFragment_ fragment = new DocumentListFragment_();
+        getIntent().putExtra(BundleKeys.DOSSIER, dossier);
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("document").commit();
+        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.POST) + ", " + getIntent().getStringExtra(BundleKeys.DOSSIER));
     }
 
     @Override
-    public void itemGeselecteerd(String selectie) {
-
+    public void documentGeselecteerd(String document) {
+        Intent intent = BladenListActivity_.intent(this).get();
+        intent.putExtras(getIntent());
+        intent.putExtra(BundleKeys.DOCUMENT, document);
+        startActivity(intent);
     }
 }
