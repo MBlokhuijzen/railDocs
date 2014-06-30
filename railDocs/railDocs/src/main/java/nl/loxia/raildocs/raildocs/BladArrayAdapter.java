@@ -59,7 +59,7 @@ public class BladArrayAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        BladView bladView = null;
+        BladView bladView;
         if (convertView == null) {
             bladView = BladView_.build(context);
         } else {

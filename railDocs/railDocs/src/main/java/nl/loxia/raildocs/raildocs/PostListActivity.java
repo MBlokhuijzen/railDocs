@@ -22,8 +22,18 @@ public class PostListActivity extends Activity implements PostListFragment.OnFra
 
     @Override
     public void postGeselecteerd(String post) {
-        Intent intent = DossierListActivity_.intent(this).get();
-        intent.putExtra(BundleKeys.POST, post);
+        DossierListFragment_ fragment = new DossierListFragment_();
+        getIntent().putExtra(BundleKeys.POST, post);
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("dossier").commit();
+        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.POST));
+    }
+
+    @Override
+    public void dossierGeselecteerd(String dossier) {
+        Intent intent = DocumentListActivity_.intent(this).get();
+        intent.putExtras(getIntent());
+        intent.putExtra(BundleKeys.DOSSIER, dossier);
         startActivity(intent);
     }
 
