@@ -239,7 +239,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         } else {
             passwordStore.clear();
         }
-        PostListActivity_.intent(this).start();
+        BrowseListActivity_.intent(this).start();
         finish();
     }
 

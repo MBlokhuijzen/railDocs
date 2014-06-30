@@ -9,7 +9,7 @@ import org.androidannotations.annotations.EActivity;
 import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
-public class PostListActivity extends Activity implements PostListFragment.OnFragmentInteractionListener {
+public class BrowseListActivity extends Activity implements PostListFragment.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

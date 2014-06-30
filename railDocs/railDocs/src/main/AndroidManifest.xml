@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PostListActivity_"
+            android:name=".BrowseListActivity_"
             android:label="@string/title_activity_post_list"></activity>
         <activity
             android:name=".DossierListActivity_"
