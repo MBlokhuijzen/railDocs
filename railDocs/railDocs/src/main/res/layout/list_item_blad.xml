@@ -3,17 +3,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/activity_horizontal_margin"
-    android:layout_marginRight="@dimen/activity_horizontal_margin"
-    android:background="@drawable/card">
+    android:layout_marginLeft="@dimen/padding_medium"
+    android:layout_marginRight="@dimen/padding_medium"
+    android:background="@drawable/card"
+    android:padding="@dimen/padding_small">
 
     <TextView
+        android:id="@+id/idnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="000200123"
-        android:id="@+id/idnummer"
-        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:text="000200123"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
 </RelativeLayout>
