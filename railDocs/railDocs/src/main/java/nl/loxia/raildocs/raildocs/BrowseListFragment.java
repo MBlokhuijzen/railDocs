@@ -2,9 +2,7 @@ package nl.loxia.raildocs.raildocs;
 
 import android.app.Activity;
 import android.app.ListFragment;
-import android.view.View;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListAdapter;
 import android.widget.Toast;
@@ -17,7 +15,7 @@ import org.androidannotations.annotations.rest.RestService;
 
 import java.util.List;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
+import nl.loxia.raildocs.raildocs.util.CredentialsStore;
 
 /**
  * Created by Tiemen on 13-6-2014.

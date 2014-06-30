@@ -1,31 +1,19 @@
 package nl.loxia.raildocs.raildocs;
 
-import android.app.Activity;
 import android.app.Fragment;
-import android.app.ListFragment;
-import android.content.Intent;
-import android.net.Uri;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ListAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import org.androidannotations.annotations.AfterViews;
-import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.androidannotations.annotations.ViewById;
 import org.androidannotations.annotations.rest.RestService;
-import org.springframework.web.client.RestClientException;
 
-import java.util.List;
-
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
+import nl.loxia.raildocs.raildocs.util.BundleKeys;
+import nl.loxia.raildocs.raildocs.util.CredentialsStore;
 
 /**
  * A fragment representing a list of Items.

@@ -1,20 +1,17 @@
 package nl.loxia.raildocs.raildocs;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
-import org.androidannotations.annotations.UiThread;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
+import nl.loxia.raildocs.raildocs.util.BundleKeys;
 
 @EFragment(R.layout.fragment_post)
 public class DocumentListFragment extends BrowseListFragment implements AbsListView.OnItemClickListener {

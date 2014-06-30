@@ -36,7 +36,7 @@ import org.springframework.web.client.RestClientException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
+import nl.loxia.raildocs.raildocs.util.CredentialsStore;
 
 @EActivity(R.layout.activity_login)
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {

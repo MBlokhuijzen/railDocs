@@ -16,10 +16,8 @@ import org.springframework.web.client.RestClientException;
 import java.util.ArrayList;
 import java.util.List;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.BladView;
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.BladView_;
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.CredentialsStore;
+import nl.loxia.raildocs.raildocs.domein.Blad;
+import nl.loxia.raildocs.raildocs.util.CredentialsStore;
 
 /**
  * Created by Tiemen on 24-6-2014.

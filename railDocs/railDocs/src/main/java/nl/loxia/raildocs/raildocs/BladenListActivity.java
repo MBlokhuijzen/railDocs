@@ -1,12 +1,11 @@
 package nl.loxia.raildocs.raildocs;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 
 import org.androidannotations.annotations.EActivity;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.util.BundleKeys;
+import nl.loxia.raildocs.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
 public class BladenListActivity extends Activity {

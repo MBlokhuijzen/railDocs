@@ -7,7 +7,7 @@ import org.springframework.http.converter.json.GsonHttpMessageConverter;
 
 import java.util.List;
 
-import nl.loxia.raildocs.raildocs.nl.loxia.raildocs.domein.Blad;
+import nl.loxia.raildocs.raildocs.domein.Blad;
 
 /**
  * Created by Tiemen on 10-6-2014.
