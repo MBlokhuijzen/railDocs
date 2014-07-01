@@ -26,6 +26,14 @@ public class BladView extends RelativeLayout {
     private final Context context;
     @ViewById
     protected TextView idnummer;
+    @ViewById
+    protected TextView domein;
+    @ViewById
+    protected TextView bladnummer;
+    @ViewById
+    protected TextView ids;
+    @ViewById
+    protected TextView versie;
 
     @Bean
     protected CredentialsStore credentialsStore;
@@ -40,6 +48,10 @@ public class BladView extends RelativeLayout {
     public void bind(Blad blad) {
         this.blad = blad;
         idnummer.setText(blad.idnummer);
+        domein.setText(blad.domeintype);
+        ids.setText(blad.indienststellingsdatum);
+        versie.setText(blad.versie);
+        bladnummer.setText(blad.bladnummer);
     }
 
     @Click

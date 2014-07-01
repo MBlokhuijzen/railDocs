@@ -15,17 +15,84 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
+        android:layout_marginBottom="@dimen/padding_small"
         android:text="000200123"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <ImageButton
-        android:background="@android:color/transparent"
+        android:id="@+id/downloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/downloadButton"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@android:color/transparent"
         android:src="@android:drawable/ic_menu_save" />
+
+    <TextView
+        android:id="@+id/domein"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/idnummer"
+        android:text="OBE"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/bladnummer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/idnummer"
+        android:layout_alignRight="@+id/idnummer"
+        android:layout_below="@+id/idnummer"
+        android:text="4A"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/idnummer"
+        android:layout_toLeftOf="@+id/bladnummer"
+        android:text="Blad "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/ids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/space"
+        android:layout_alignParentTop="true"
+        android:layout_alignStart="@+id/space"
+        android:layout_marginBottom="@dimen/padding_small"
+        android:text="21-06-2013"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="20px"
+        android:layout_height="20px"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/versieText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/ids"
+        android:layout_alignStart="@+id/ids"
+        android:layout_below="@+id/ids"
+        android:text="Versie "
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/versie"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ids"
+        android:layout_toRightOf="@+id/versieText"
+        android:text="G001"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
 
 </RelativeLayout>

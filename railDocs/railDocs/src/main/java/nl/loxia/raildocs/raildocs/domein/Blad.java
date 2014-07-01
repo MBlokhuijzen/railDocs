@@ -5,9 +5,9 @@ package nl.loxia.raildocs.raildocs.domein;
  */
 public class Blad {
     public String idnummer;
+    public String domeintype;
     public String bladnummer;
     public String versie;
-    public Status status;
     public String indienststellingsdatum;
     public MetaInfo metaInfo;
 }
