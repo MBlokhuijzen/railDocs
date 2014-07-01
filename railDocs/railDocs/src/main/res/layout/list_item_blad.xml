@@ -12,62 +12,60 @@
         android:id="@+id/idnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginBottom="@dimen/padding_small"
         android:text="000200123"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
+        android:textAppearance="@android:style/TextAppearance.Small"
+        android:layout_below="@+id/versieText"
+        android:layout_alignRight="@+id/versie"
+        android:layout_alignEnd="@+id/versie" />
 
     <ImageButton
         android:id="@+id/downloadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
         android:background="@android:color/transparent"
-        android:src="@android:drawable/ic_menu_save" />
+        android:src="@android:drawable/ic_menu_save"
+        android:layout_below="@+id/bladnummer"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/domein"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/idnummer"
         android:text="OBE"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textSize="@dimen/large_text"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/bladnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/idnummer"
-        android:layout_alignRight="@+id/idnummer"
-        android:layout_below="@+id/idnummer"
         android:text="4A"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignTop="@+id/textView"
+        android:layout_toRightOf="@+id/textView" />
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/idnummer"
-        android:layout_toLeftOf="@+id/bladnummer"
         android:text="Blad "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/versieText"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <TextView
         android:id="@+id/ids"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/space"
-        android:layout_alignParentTop="true"
-        android:layout_alignStart="@+id/space"
-        android:layout_marginBottom="@dimen/padding_small"
         android:text="21-06-2013"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <Space
         android:id="@+id/space"
@@ -80,19 +78,19 @@
         android:id="@+id/versieText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/ids"
-        android:layout_alignStart="@+id/ids"
-        android:layout_below="@+id/ids"
         android:text="Versie "
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ids"
+        android:layout_toLeftOf="@+id/versie" />
 
     <TextView
         android:id="@+id/versie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/ids"
-        android:layout_toRightOf="@+id/versieText"
         android:text="G001"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/ids"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
