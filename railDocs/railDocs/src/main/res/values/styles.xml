@@ -5,4 +5,13 @@
         <!-- Customize your theme here. -->
     </style>
 
+    <style name="cardTextSmall" parent="android:TextAppearance.Small">
+        <item name="android:textColor">#868686</item>
+    </style>
+    <style name="cardTextMedium" parent="android:TextAppearance.Medium">
+        <item name="android:textColor">#868686</item>
+    </style>
+    <style name="cardTextLarge" parent="android:TextAppearance.Large">
+        <item name="android:textColor">#868686</item>
+    </style>
 </resources>

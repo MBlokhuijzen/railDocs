@@ -9,11 +9,9 @@
 
     <RelativeLayout
         android:id="@+id/relativeLayout"
-        xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-
         android:layout_height="wrap_content"
-        android:padding="@dimen/padding_small">
+        android:padding="@dimen/padding_medium">
 
         <TextView
             android:id="@+id/idnummer"
@@ -23,7 +21,7 @@
             android:layout_alignRight="@+id/versie"
             android:layout_below="@+id/versieText"
             android:text="000200123"
-            android:textAppearance="@android:style/TextAppearance.Small" />
+            android:textAppearance="@style/cardTextSmall" />
 
         <TextView
             android:id="@+id/domein"
@@ -33,7 +31,7 @@
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:text="OBE"
-            android:textAppearance="@android:style/TextAppearance.Large"
+            android:textAppearance="@style/cardTextLarge"
             android:textSize="@dimen/large_text" />
 
         <TextView
@@ -43,7 +41,7 @@
             android:layout_alignTop="@+id/textView"
             android:layout_toRightOf="@+id/textView"
             android:text="4A"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@style/cardTextMedium" />
 
         <TextView
             android:id="@+id/textView"
@@ -53,7 +51,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/versieText"
             android:text="Blad "
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@style/cardTextMedium" />
 
         <TextView
             android:id="@+id/ids"
@@ -63,7 +61,7 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:text="21-06-2013"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@style/cardTextMedium" />
 
         <Space
             android:id="@+id/space"
@@ -79,7 +77,7 @@
             android:layout_below="@+id/ids"
             android:layout_toLeftOf="@+id/versie"
             android:text="Versie "
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@style/cardTextMedium" />
 
         <TextView
             android:id="@+id/versie"
@@ -89,7 +87,7 @@
             android:layout_alignParentRight="true"
             android:layout_below="@+id/ids"
             android:text="G001"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textAppearance="@style/cardTextMedium" />
     </RelativeLayout>
 
     <LinearLayout
