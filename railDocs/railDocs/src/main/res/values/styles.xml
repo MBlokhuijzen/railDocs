@@ -8,11 +8,23 @@
     <style name="cardTextSmall" parent="android:TextAppearance.Small">
         <item name="android:textColor">#868686</item>
     </style>
+
     <style name="cardTextMedium" parent="android:TextAppearance.Medium">
         <item name="android:textColor">#868686</item>
     </style>
+
     <style name="cardTextLarge" parent="android:TextAppearance.Large">
         <item name="android:textColor">#868686</item>
         <item name="android:textSize">@dimen/large_text</item>
+    </style>
+
+    <style name="cardLinkButton" parent="android:Widget.DeviceDefault.Button.Borderless">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">#4285f4</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingBottom">4dp</item>
+        <item name="android:minHeight">0dp</item>
+        <item name="android:minWidth">0dp</item>
     </style>
 </resources>
