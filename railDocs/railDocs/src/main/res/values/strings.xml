@@ -2,10 +2,11 @@
 <resources>
 
     <string name="app_name">railDocs</string>
-    <string name="title_activity_post_list">Posten</string>
-    <string name="title_activity_dossier_list">Dossiers</string>
-    <string name="title_activity_document_list">Documenten</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_bladen_list">Bladen in dit SWOD</string>
+    <string name="drawer_open">open</string>
+    <string name="drawer_close">close</string>
+    <string name="drawerOpenTitle">railDocs</string>
+    <string name="title_activity_browse">Bladeren</string>
 
 </resources>

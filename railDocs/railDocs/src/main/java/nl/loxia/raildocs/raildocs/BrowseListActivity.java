@@ -2,14 +2,21 @@ package nl.loxia.raildocs.raildocs;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.widget.DrawerLayout;
+import android.view.MenuItem;
+import android.view.View;
 
+import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.ViewById;
 
 import nl.loxia.raildocs.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
-public class BrowseListActivity extends Activity implements PostListFragment.OnFragmentInteractionListener {
+public class BrowseListActivity extends NavBarActivity implements PostListFragment.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
