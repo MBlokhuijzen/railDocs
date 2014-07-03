@@ -25,7 +25,7 @@ import nl.loxia.raildocs.raildocs.util.CredentialsStore;
  * interface.
  */
 @EFragment(R.layout.fragment_list_blad)
-public class BladenListFragment extends Fragment implements AbsListView.OnItemClickListener {
+public class BladenListFragment extends Fragment {
     @ViewById(android.R.id.list)
     protected ListView listView;
     @RestService
@@ -53,10 +53,5 @@ public class BladenListFragment extends Fragment implements AbsListView.OnItemCl
         String dossier = getArguments().getString(BundleKeys.DOSSIER);
         String document = getArguments().getString(BundleKeys.DOCUMENT);
         adapter.initAdapter(post, dossier, document);
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        // todo download and open pdf
     }
 }

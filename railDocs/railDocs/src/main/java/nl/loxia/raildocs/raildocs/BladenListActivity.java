@@ -1,6 +1,5 @@
 package nl.loxia.raildocs.raildocs;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import org.androidannotations.annotations.EActivity;
@@ -8,7 +7,7 @@ import org.androidannotations.annotations.EActivity;
 import nl.loxia.raildocs.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
-public class BladenListActivity extends NavBarActivity {
+public class BladenListActivity extends NavDrawerActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
