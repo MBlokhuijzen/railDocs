@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="navdrawer_items">
+        <item>Bladeren</item>
+        <item>Hier in de buurt</item>
+    </string-array>
+
+</resources>
