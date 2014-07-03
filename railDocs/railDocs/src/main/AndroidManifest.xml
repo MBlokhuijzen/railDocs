@@ -20,7 +20,7 @@
         </activity>
         <activity
             android:name=".BrowseListActivity_"
-            android:label="@string/title_activity_post_list" />
+            android:label="@string/title_activity_browse" />
         <activity
             android:name=".BladenListActivity_"
             android:label="@string/title_activity_bladen_list" />
