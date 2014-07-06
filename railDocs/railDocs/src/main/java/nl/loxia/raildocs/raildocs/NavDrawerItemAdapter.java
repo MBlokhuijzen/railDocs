@@ -6,7 +6,6 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 
 import org.androidannotations.annotations.EBean;
-import org.androidannotations.annotations.ItemClick;
 import org.androidannotations.annotations.RootContext;
 
 import java.util.ArrayList;
@@ -23,8 +22,8 @@ public class NavDrawerItemAdapter extends BaseAdapter {
     protected Context context;
 
     public void initAdapter() {
-        items.add(new NavDrawerItem(R.string.title_activity_browse));
-        items.add(new NavDrawerItem(R.string.title_activity_aroundhere));
+        items.add(new NavDrawerItem(R.string.title_activity_browse, NavDrawerItem.BROWSE));
+        items.add(new NavDrawerItem(R.string.title_activity_nearby, NavDrawerItem.NEARBY));
 
         notifyDataSetChanged();
     }

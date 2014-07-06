@@ -30,9 +30,13 @@ public abstract class NavDrawerActivity extends Activity {
 
     @ItemClick(R.id.drawer)
     public void itemClick(int position) {
+        int selectedId = adapter.getItem(position).id;
+        navDrawerItemSelected(selectedId);
         drawer.setItemChecked(position, true);
         drawerLayout.closeDrawer(drawer);
     }
+
+    protected abstract void navDrawerItemSelected(int item);
 
     @AfterViews
     protected void init() {

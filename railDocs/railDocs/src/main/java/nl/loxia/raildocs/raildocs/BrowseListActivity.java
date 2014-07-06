@@ -1,6 +1,5 @@
 package nl.loxia.raildocs.raildocs;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import org.androidannotations.annotations.EActivity;
@@ -13,10 +12,20 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (savedInstanceState == null) {
-            PostListFragment_ fragment = new PostListFragment_();
-            fragment.setArguments(getIntent().getExtras());
-            getFragmentManager().beginTransaction().add(R.id.container, fragment).commit();
+            startBrowse();
         }
+    }
+
+    private void startBrowse() {
+        PostListFragment_ fragment = new PostListFragment_();
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
+    }
+
+    private void startNearby() {
+        NearbyListFragment fragment = new NearbyListFragment_();
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     @Override
@@ -44,5 +53,17 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
         fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("bladen").commit();
         getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.DOCUMENT));
+    }
+
+    @Override
+    protected void navDrawerItemSelected(int item) {
+        switch (item) {
+            case NavDrawerItem.BROWSE:
+                startBrowse();
+                break;
+            case NavDrawerItem.NEARBY:
+                startNearby();
+                break;
+        }
     }
 }

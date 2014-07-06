@@ -8,6 +8,6 @@
     <string name="drawer_close">close</string>
     <string name="drawerOpenTitle">railDocs</string>
     <string name="title_activity_browse">Bladeren</string>
-    <string name="title_activity_aroundhere">In de buurt</string>
+    <string name="title_activity_nearby">In de buurt</string>
 
 </resources>
