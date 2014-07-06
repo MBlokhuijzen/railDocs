@@ -45,6 +45,8 @@ public class BladenListFragment extends Fragment {
 
     @AfterViews
     protected void bindAdapter() {
+        getActivity().setTitle(R.string.title_activity_bladen_list);
+
         listView.addFooterView(new View(getActivity()), null, false);
         listView.addHeaderView(new View(getActivity()), null, false);
         listView.setAdapter(adapter);

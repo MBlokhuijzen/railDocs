@@ -24,6 +24,7 @@ public class PostListFragment extends BrowseListFragment implements AbsListView.
 
     @AfterViews
     public void init() {
+        getActivity().setTitle(R.string.title_activity_browse);
         listView.setOnItemClickListener(this);
         loadData();
     }

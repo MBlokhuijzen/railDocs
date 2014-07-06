@@ -21,9 +21,6 @@
         <activity
             android:name=".BrowseListActivity_"
             android:label="@string/title_activity_browse" />
-        <activity
-            android:name=".BladenListActivity_"
-            android:label="@string/title_activity_bladen_list" />
     </application>
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->

@@ -39,9 +39,10 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
 
     @Override
     public void documentGeselecteerd(String document) {
-        Intent intent = BladenListActivity_.intent(this).get();
-        intent.putExtras(getIntent());
-        intent.putExtra(BundleKeys.DOCUMENT, document);
-        startActivity(intent);
+        BladenListFragment_ fragment = new BladenListFragment_();
+        getIntent().putExtra(BundleKeys.DOCUMENT, document);
+        fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("bladen").commit();
+        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.DOCUMENT));
     }
 }

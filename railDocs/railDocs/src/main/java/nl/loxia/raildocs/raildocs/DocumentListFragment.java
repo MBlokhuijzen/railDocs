@@ -25,6 +25,7 @@ public class DocumentListFragment extends BrowseListFragment implements AbsListV
 
     @AfterViews
     public void init() {
+        getActivity().setTitle(R.string.title_activity_browse);
         listView.setOnItemClickListener(this);
         loadData(getArguments().getString(BundleKeys.POST), getArguments().getString(BundleKeys.DOSSIER));
     }
