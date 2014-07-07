@@ -20,7 +20,7 @@ import org.androidannotations.annotations.ViewById;
  */
 @EActivity
 public abstract class NavDrawerActivity extends Activity {
-    private ActionBarDrawerToggle drawerToggle;
+    private MyActionBarDrawerToggle drawerToggle;
     @ViewById
     protected DrawerLayout drawerLayout;
     @ViewById
@@ -78,14 +78,19 @@ public abstract class NavDrawerActivity extends Activity {
         private CharSequence title = getTitle();
         private CharSequence subtitle = getActionBar().getSubtitle();
 
+        public boolean changeTitle = true;
+
         public MyActionBarDrawerToggle() {
             super(NavDrawerActivity.this, NavDrawerActivity.this.drawerLayout, R.drawable.ic_drawer, R.string.drawer_open, R.string.drawer_close);
         }
 
         public void onDrawerClosed(View view) {
             super.onDrawerClosed(view);
-            getActionBar().setTitle(title);
-            getActionBar().setSubtitle(subtitle);
+            if (changeTitle) {
+                getActionBar().setTitle(title);
+                getActionBar().setSubtitle(subtitle);
+            }
+            changeTitle = true;
         }
 
         public void onDrawerOpened(View drawerView) {

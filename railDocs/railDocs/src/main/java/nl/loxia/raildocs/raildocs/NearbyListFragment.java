@@ -2,12 +2,14 @@ package nl.loxia.raildocs.raildocs;
 
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.app.ListFragment;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -17,15 +19,31 @@ import com.google.android.gms.location.LocationClient;
 
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
+import org.androidannotations.annotations.Bean;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.ViewById;
 import org.springframework.web.client.RestClientException;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
+import nl.loxia.raildocs.raildocs.util.SwodWithLocation;
+
 @EFragment(R.layout.fragment_post)
-public class NearbyListFragment extends BrowseListFragment implements AbsListView.OnItemClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
-    private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
+public class NearbyListFragment extends ListFragment implements AbsListView.OnItemClickListener, GooglePlayServicesClient.ConnectionCallbacks, GooglePlayServicesClient.OnConnectionFailedListener {
     private LocationClient locationClient;
+
+    @ViewById(android.R.id.list)
+    protected ListView listView;
+
+    @Bean
+    SwodWithLocationAdapter adapter;
 
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
@@ -52,36 +70,12 @@ public class NearbyListFragment extends BrowseListFragment implements AbsListVie
         listView.setOnItemClickListener(this);
 
         locationClient = new LocationClient(getActivity(), this, this);
-
-//        loadData(getArguments().getString(BundleKeys.POST), getArguments().getString(BundleKeys.DOSSIER));
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != listener) {
-            listener.documentGeselecteerd(listContent.get((int) id));
-        }
-    }
-
-
-    @Background
-    protected void loadData(String post, String dossier) {
-        try {
-            credentialsStore.setCredentials(railCloud);
-            List<String> documenten = railCloud.getDocumenten(post, dossier);
-            setData(documenten);
-            if (documenten.size() == 1) {
-                listener.documentGeselecteerd(documenten.get(0));
-            }
-        } catch (RestClientException e) {
-            loadingError();
-        }
     }
 
     @Override
     public void onConnected(Bundle bundle) {
         Location location = locationClient.getLastLocation();
-        Toast.makeText(getActivity(), "Location: " + location.toString(), Toast.LENGTH_LONG).show();
+        adapter.initAdapter(this, location);
     }
 
     @Override
@@ -91,6 +85,11 @@ public class NearbyListFragment extends BrowseListFragment implements AbsListVie
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
     }
 }
