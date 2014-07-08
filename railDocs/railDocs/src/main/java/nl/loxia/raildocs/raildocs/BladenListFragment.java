@@ -1,6 +1,7 @@
 package nl.loxia.raildocs.raildocs;
 
 import android.app.Fragment;
+import android.app.ListFragment;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -25,7 +26,7 @@ import nl.loxia.raildocs.raildocs.util.CredentialsStore;
  * interface.
  */
 @EFragment(R.layout.fragment_list_blad)
-public class BladenListFragment extends Fragment {
+public class BladenListFragment extends ListFragment {
     @ViewById(android.R.id.list)
     protected ListView listView;
     @RestService
@@ -54,7 +55,7 @@ public class BladenListFragment extends Fragment {
     protected void bindAdapter() {
         listView.addFooterView(new View(getActivity()), null, false);
         listView.addHeaderView(new View(getActivity()), null, false);
-        listView.setAdapter(adapter);
+        setListAdapter(adapter);
 
         String post = getArguments().getString(BundleKeys.POST);
         String dossier = getArguments().getString(BundleKeys.DOSSIER);

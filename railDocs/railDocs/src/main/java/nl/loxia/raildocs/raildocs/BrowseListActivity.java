@@ -1,5 +1,6 @@
 package nl.loxia.raildocs.raildocs;
 
+import android.app.FragmentManager;
 import android.os.Bundle;
 
 import org.androidannotations.annotations.EActivity;
@@ -19,12 +20,14 @@ public class BrowseListActivity extends NavDrawerActivity implements OnFragmentI
     private void startBrowse() {
         PostListFragment_ fragment = new PostListFragment_();
         fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
     private void startNearby() {
         NearbyListFragment fragment = new NearbyListFragment_();
         fragment.setArguments(getIntent().getExtras());
+        getFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
