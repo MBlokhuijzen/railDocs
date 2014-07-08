@@ -1,11 +1,13 @@
 package nl.loxia.raildocs.raildocs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ListFragment;
 import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -45,6 +47,8 @@ public class NearbyListFragment extends ListFragment implements AbsListView.OnIt
     @Bean
     SwodWithLocationAdapter adapter;
 
+    private OnFragmentInteractionListener listener;
+
     /**
      * Mandatory empty constructor for the fragment manager to instantiate the
      * fragment (e.g. upon screen orientation changes).
@@ -73,7 +77,26 @@ public class NearbyListFragment extends ListFragment implements AbsListView.OnIt
     }
 
     @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            listener = (OnFragmentInteractionListener) activity;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(activity.toString() + " must implement OnFragmentInteractionListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        listener = null;
+    }
+
+    @Override
     public void onConnected(Bundle bundle) {
+        if (adapter.getCount() > 0) {
+            return;
+        }
         Location location = locationClient.getLastLocation();
         adapter.initAdapter(this, location);
     }
@@ -90,6 +113,7 @@ public class NearbyListFragment extends ListFragment implements AbsListView.OnIt
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+        SwodWithLocation swod = adapter.getItem(position);
+        listener.nearbyItemGeselecteerd(swod.post, swod.dossier, swod.document);
     }
 }

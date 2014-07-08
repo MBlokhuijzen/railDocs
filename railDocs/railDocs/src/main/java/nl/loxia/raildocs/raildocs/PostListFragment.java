@@ -33,6 +33,7 @@ public class PostListFragment extends BrowseListFragment implements AbsListView.
     public void onResume() {
         super.onResume();
         getActivity().getActionBar().setTitle(R.string.title_activity_browse);
+        getActivity().getActionBar().setSubtitle(null);
     }
 
     @Override

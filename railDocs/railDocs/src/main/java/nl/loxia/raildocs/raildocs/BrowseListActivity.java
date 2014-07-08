@@ -7,7 +7,7 @@ import org.androidannotations.annotations.EActivity;
 import nl.loxia.raildocs.raildocs.util.BundleKeys;
 
 @EActivity(R.layout.activity_list)
-public class BrowseListActivity extends NavDrawerActivity implements PostListFragment.OnFragmentInteractionListener {
+public class BrowseListActivity extends NavDrawerActivity implements OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,8 +45,21 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
     }
 
     @Override
-    public void documentGeselecteerd(String document) {
+    public void documentGeselecteerd(String document, boolean popFromBackstack) {
         BladenListFragment_ fragment = new BladenListFragment_();
+        getIntent().putExtra(BundleKeys.DOCUMENT, document);
+        fragment.setArguments(getIntent().getExtras());
+        if (popFromBackstack) {
+            getFragmentManager().popBackStack();
+        }
+        getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("bladen").commit();
+    }
+
+    @Override
+    public void nearbyItemGeselecteerd(String post, String dossier, String document) {
+        BladenListFragment_ fragment = new BladenListFragment_();
+        getIntent().putExtra(BundleKeys.POST, post);
+        getIntent().putExtra(BundleKeys.DOSSIER, dossier);
         getIntent().putExtra(BundleKeys.DOCUMENT, document);
         fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("bladen").commit();

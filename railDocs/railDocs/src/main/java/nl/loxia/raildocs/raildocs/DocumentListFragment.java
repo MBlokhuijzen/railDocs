@@ -40,7 +40,7 @@ public class DocumentListFragment extends BrowseListFragment implements AbsListV
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         if (null != listener) {
-            listener.documentGeselecteerd(listContent.get((int) id));
+            listener.documentGeselecteerd(listContent.get((int) id), false);
         }
     }
 
@@ -61,6 +61,6 @@ public class DocumentListFragment extends BrowseListFragment implements AbsListV
 
     @UiThread
     protected void autoSelect(String document) {
-        listener.documentGeselecteerd(document);
+        listener.documentGeselecteerd(document, true);
     }
 }

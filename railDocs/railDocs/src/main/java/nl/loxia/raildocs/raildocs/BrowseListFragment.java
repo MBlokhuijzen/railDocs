@@ -39,6 +39,9 @@ public class BrowseListFragment extends ListFragment {
 
     @UiThread
     protected void setData(List<String> data) {
+        if (getActivity() == null) { // can happen if back button is pressed fast repeatedly
+            return;
+        }
         this.listContent = data;
         listAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_list_item_1, android.R.id.text1, data);
         setListAdapter(listAdapter);
@@ -58,11 +61,5 @@ public class BrowseListFragment extends ListFragment {
     public void onDetach() {
         super.onDetach();
         listener = null;
-    }
-
-    public interface OnFragmentInteractionListener {
-        public void postGeselecteerd(String post);
-        public void dossierGeselecteerd(String dossier);
-        public void documentGeselecteerd(String document);
     }
 }
