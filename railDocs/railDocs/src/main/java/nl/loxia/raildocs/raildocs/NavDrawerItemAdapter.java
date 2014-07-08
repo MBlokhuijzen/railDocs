@@ -22,8 +22,8 @@ public class NavDrawerItemAdapter extends BaseAdapter {
     protected Context context;
 
     public void initAdapter() {
-        items.add(new NavDrawerItem(R.string.title_activity_browse, NavDrawerItem.BROWSE));
-        items.add(new NavDrawerItem(R.string.title_activity_nearby, NavDrawerItem.NEARBY));
+        items.add(new NavDrawerItem(R.string.title_activity_browse, android.R.drawable.ic_menu_sort_by_size, NavDrawerItem.BROWSE));
+        items.add(new NavDrawerItem(R.string.title_activity_nearby, android.R.drawable.ic_menu_mylocation, NavDrawerItem.NEARBY));
 
         notifyDataSetChanged();
     }

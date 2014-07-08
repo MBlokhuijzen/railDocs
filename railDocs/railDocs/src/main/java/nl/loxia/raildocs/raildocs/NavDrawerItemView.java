@@ -2,6 +2,7 @@ package nl.loxia.raildocs.raildocs;
 
 import android.content.Context;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +16,10 @@ import org.androidannotations.annotations.ViewById;
 public class NavDrawerItemView extends LinearLayout {
     @ViewById
     protected TextView text;
+
+    @ViewById
+    protected ImageView icon;
+
     private NavDrawerItem item;
 
     public NavDrawerItemView(Context context) {
@@ -24,5 +29,6 @@ public class NavDrawerItemView extends LinearLayout {
     public void bind(NavDrawerItem item) {
         this.item = item;
         text.setText(item.textResource);
+        icon.setImageResource(item.iconResource);
     }
 }
