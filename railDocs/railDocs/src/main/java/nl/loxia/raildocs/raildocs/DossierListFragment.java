@@ -22,9 +22,15 @@ public class DossierListFragment extends BrowseListFragment implements AbsListVi
 
     @AfterViews
     public void init() {
-        getActivity().setTitle(R.string.title_activity_browse);
         listView.setOnItemClickListener(this);
         loadData(getArguments().getString(BundleKeys.POST));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getActionBar().setTitle(R.string.title_activity_browse);
+        getActivity().getActionBar().setSubtitle(getArguments().getString(BundleKeys.POST));
     }
 
     @Override

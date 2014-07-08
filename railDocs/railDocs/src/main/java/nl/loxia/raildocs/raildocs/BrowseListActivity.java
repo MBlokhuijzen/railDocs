@@ -34,7 +34,6 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
         getIntent().putExtra(BundleKeys.POST, post);
         fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("dossier").commit();
-        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.POST));
     }
 
     @Override
@@ -43,7 +42,6 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
         getIntent().putExtra(BundleKeys.DOSSIER, dossier);
         fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("document").commit();
-        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.POST) + ", " + getIntent().getStringExtra(BundleKeys.DOSSIER));
     }
 
     @Override
@@ -52,7 +50,6 @@ public class BrowseListActivity extends NavDrawerActivity implements PostListFra
         getIntent().putExtra(BundleKeys.DOCUMENT, document);
         fragment.setArguments(getIntent().getExtras());
         getFragmentManager().beginTransaction().replace(R.id.container, fragment).addToBackStack("bladen").commit();
-        getActionBar().setSubtitle(getIntent().getStringExtra(BundleKeys.DOCUMENT));
     }
 
     @Override

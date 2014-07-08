@@ -7,6 +7,7 @@ import android.widget.AdapterView;
 import org.androidannotations.annotations.AfterViews;
 import org.androidannotations.annotations.Background;
 import org.androidannotations.annotations.EFragment;
+import org.androidannotations.annotations.UiThread;
 import org.springframework.web.client.RestClientException;
 
 import java.util.List;
@@ -25,9 +26,15 @@ public class DocumentListFragment extends BrowseListFragment implements AbsListV
 
     @AfterViews
     public void init() {
-        getActivity().setTitle(R.string.title_activity_browse);
         listView.setOnItemClickListener(this);
         loadData(getArguments().getString(BundleKeys.POST), getArguments().getString(BundleKeys.DOSSIER));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getActionBar().setTitle(R.string.title_activity_browse);
+        getActivity().getActionBar().setSubtitle(getArguments().getString(BundleKeys.POST) + ", " + getArguments().getString(BundleKeys.DOSSIER));
     }
 
     @Override
@@ -45,10 +52,15 @@ public class DocumentListFragment extends BrowseListFragment implements AbsListV
             List<String> documenten = railCloud.getDocumenten(post, dossier);
             setData(documenten);
             if (documenten.size() == 1) {
-                listener.documentGeselecteerd(documenten.get(0));
+                autoSelect(documenten.get(0));
             }
         } catch (RestClientException e) {
             loadingError();
         }
+    }
+
+    @UiThread
+    protected void autoSelect(String document) {
+        listener.documentGeselecteerd(document);
     }
 }

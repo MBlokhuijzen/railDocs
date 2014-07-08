@@ -55,6 +55,7 @@ public class NearbyListFragment extends ListFragment implements AbsListView.OnIt
     @Override
     public void onStart() {
         super.onStart();
+        getActivity().getActionBar().setTitle(R.string.title_activity_nearby);
         locationClient.connect();
     }
 
@@ -66,7 +67,6 @@ public class NearbyListFragment extends ListFragment implements AbsListView.OnIt
 
     @AfterViews
     public void init() {
-        getActivity().setTitle(R.string.title_activity_nearby);
         listView.setOnItemClickListener(this);
 
         locationClient = new LocationClient(getActivity(), this, this);

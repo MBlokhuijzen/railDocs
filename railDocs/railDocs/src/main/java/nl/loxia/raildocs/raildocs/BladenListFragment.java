@@ -43,10 +43,15 @@ public class BladenListFragment extends Fragment {
     public BladenListFragment() {
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getActionBar().setTitle(R.string.title_activity_bladen_list);
+        getActivity().getActionBar().setSubtitle(getArguments().getString(BundleKeys.DOCUMENT));
+    }
+
     @AfterViews
     protected void bindAdapter() {
-        getActivity().setTitle(R.string.title_activity_bladen_list);
-
         listView.addFooterView(new View(getActivity()), null, false);
         listView.addHeaderView(new View(getActivity()), null, false);
         listView.setAdapter(adapter);

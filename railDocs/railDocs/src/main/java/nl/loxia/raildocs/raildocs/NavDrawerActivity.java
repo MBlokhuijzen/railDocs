@@ -33,6 +33,7 @@ public abstract class NavDrawerActivity extends Activity {
         int selectedId = adapter.getItem(position).id;
         navDrawerItemSelected(selectedId);
         drawer.setItemChecked(position, true);
+        drawerToggle.changeTitle = false;
         drawerLayout.closeDrawer(drawer);
     }
 
@@ -75,7 +76,7 @@ public abstract class NavDrawerActivity extends Activity {
     }
 
     private class MyActionBarDrawerToggle extends ActionBarDrawerToggle {
-        private CharSequence title = getTitle();
+        private CharSequence title = getActionBar().getTitle();
         private CharSequence subtitle = getActionBar().getSubtitle();
 
         public boolean changeTitle = true;
@@ -95,11 +96,11 @@ public abstract class NavDrawerActivity extends Activity {
 
         public void onDrawerOpened(View drawerView) {
             super.onDrawerOpened(drawerView);
-            title = getTitle();
+            title = getActionBar().getTitle();
             subtitle = getActionBar().getSubtitle();
             getActionBar().setTitle(R.string.drawerOpenTitle);
             if (subtitle != null) {
-                getActionBar().setSubtitle("");
+                getActionBar().setSubtitle(null);
             }
         }
     }

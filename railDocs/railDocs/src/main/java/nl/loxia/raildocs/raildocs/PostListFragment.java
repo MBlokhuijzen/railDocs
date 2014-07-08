@@ -1,5 +1,6 @@
 package nl.loxia.raildocs.raildocs;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -24,9 +25,14 @@ public class PostListFragment extends BrowseListFragment implements AbsListView.
 
     @AfterViews
     public void init() {
-        getActivity().setTitle(R.string.title_activity_browse);
         listView.setOnItemClickListener(this);
         loadData();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getActivity().getActionBar().setTitle(R.string.title_activity_browse);
     }
 
     @Override
